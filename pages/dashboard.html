@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyApp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        .overCard{
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+    
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MoneyApp</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
+    </head>
+    <body onload="dataRecieveAll()">
+        
+        <nav class="navbar navbar-expand-lg  navbar-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand text-dark" href="#">Ali Food</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse  d-flex justify-content-end" id="navbarNav">
+               <button class="btn-lg btn-close-white" onclick="logOut()">LogOut</button>
+              </div>
+            </div>
+          </nav>
+    
+
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12 overCard border-secondary border border-2 p-3 mb-5" >
+                      <h3 style="text-align: center;">Pending</h3>
+                      <div class="d-grid gap-3"id="dataLoadPending">
+                        <!-- <div class="p-1 bg-light border">Grid item 1</div>
+                        <div class="p-1 bg-light border">Grid item 2</div>
+                        <div class="p-1 bg-light border">Grid item 3</div> -->
+                      </div>
+                  </div>
+                  <div class="col-lg-12 overCard border-secondary border border-2 p-3 mb-5">
+                      <h3 style="text-align: center;">Accepted</h3>
+                      <div class="d-grid gap-3" id="dataLoadAccepted" >
+                        <!-- <div class="p-1 bg-light border">Grid item 1</div>
+                        <div class="p-1 bg-light border">Grid item 2</div>
+                        <div class="p-1 bg-light border">Grid item 3</div> -->
+                      </div>
+                </div>
+                <div class="col-lg-12 overCard border-secondary border border-2 p-3 mb-5">
+                      <h3 style="text-align: center;">Delievered</h3>
+                      <div class="d-grid gap-3" id="dataLoadDelievered">
+                        <!-- <div class="p-1 bg-light border">Grid item 1</div>
+                        <div class="p-1 bg-light border">Grid item 2</div>
+                        <div class="p-1 bg-light border">Grid item 3</div> -->
+                      </div>
+
+                </div>
+              </div>
+
+
+              <div class="row" style="margin-top: 70px; border-bottom: 3px solid;">
+                <div class="col-lg-4"> </div>
+                  <div class="col-lg-4">
+                      <h1>Add Your Product</h1>      
+                </div>
+                  <div class="col-lg-4">  </div>
+              </div>
+
+
+           
+                <div class="row" style="margin-top: 70px; ">
+                    <div class="col-lg-12">
+                        <label class="align-content-center">
+                           Image Upload <input type="file" placeholder="Upload Image"  name="upload-image" required
+                                id="imageUp">
+                        </label>
+                    </div>
+                    <div class="col-lg-12">
+                        <label for=""><b>Item Name</b></label>
+                        <div class="form-outline">
+                            <input type="text" class="form-control" id="itemName"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <label for=""><b>Price</b></label>
+                        <div class="form-outline">
+                            <input type="number" class="form-control" id="price" />
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <label for="" class="mb-1">Category</label>
+                        <select  id="category" class="form-select"
+                            aria-label="Default select example">
+                            <option value="pakistani">Pakistani</option>
+                            <option value="indian">Indian</option>
+                        </select>
+                    </div>
+                  
+                    <div class="col-lg-12">
+                        <label for="" class="mb-1">Delivery Type</label>
+                        <select  id="dType" class="form-select"
+                            aria-label="Default select example">
+                            <option value="Free">Free</option>
+                            <option value="Paid">Paid</option>
+                        </select>
+                    </div>
+        
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4"> <button onclick="addProduct()" type="button"
+                                    class=" registerbtn  w-75 px-a">Add Item</button>
+                            </div>
+                            <div class="col-lg-4"></div>
+                        </div>
+                    </div>
+                </div>
+         
+          </div>
+
+    
+        <script src="../app.js"></script>
+    </body>
+    </html>
+
+    <script src="../app.js"></script>
+</body>
+</html>
